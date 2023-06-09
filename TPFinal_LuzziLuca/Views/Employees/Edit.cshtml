@@ -1,0 +1,51 @@
+﻿@model Employee
+
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<h1>Edit Employee: @Model.Fullname</h1>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Edit">
+    <div class="mb-3">
+        <input type="hidden" asp-for="Id" />
+        <label asp-for="Fullname" class="form-label"></label>
+        <input type="text" asp-for="Fullname" class="form-control" />
+        <span asp-validation-for="Fullname" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Age" class="form-label"></label>
+        <input type="text" asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input type="text" asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="JobName" class="form-label"></label>
+        <select asp-for="JobName" class="form-select" asp-items="@(new SelectList(new[] {
+            new { Value = "Boss", Text = "Boss" },
+            new { Value = "Sales Consultant", Text = "Sales Consultant" },
+            new { Value = "Salesperson", Text = "Salesperson" },
+            new { Value = "Human Resources", Text = "Human Resources" }
+        }, "Value", "Text"))">
+        </select>
+        <span asp-validation-for="JobName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Salary" class="form-label"></label>
+        <input type="text" asp-for="Salary" class="form-control" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Send</button>
+    <a class="btn btn-secondary" asp-action="Index">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

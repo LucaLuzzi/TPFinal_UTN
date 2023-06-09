@@ -1,0 +1,41 @@
+﻿@model List<Employee>;
+
+@{
+    ViewData["Title"] = "Employess";
+}
+
+<h1>List of Employees</h1>
+<h5>
+    Here you will see the complete list of employees with their respective personal information
+</h5>
+
+<a asp-action="Create" class="btn btn-primary mb-3">Create new Employee</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Actions</th>
+            <th>Fullname</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Job</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@employee.Id">Edit</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@employee.Id">Delete</a>
+                </td>
+                <td>@employee.Fullname</td>
+                <td>@employee.Email</td>
+                <td>@employee.Age</td>
+                <td>@employee.JobName</td>
+                <td>@employee.Salary</td>
+            </tr>
+        }
+    </tbody>
+</table>
